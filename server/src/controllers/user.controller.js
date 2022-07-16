@@ -2,6 +2,19 @@ import User from "../models/user.model";
 import _ from "lodash";
 import errorHandler from "../helpers/dbErrorHandler";
 
+
+const findOneUser = (req, res) => {
+
+    User.findOne({ 'username': req.body.username }, (err, user) => {
+      if (err || !user) {
+        return res.status(401).json({ error: "User not found!" });
+      }
+      res.status(200).json({
+        user: { _id: user._id, name: user.username, email: user.email },
+      });
+    });
+  };
+
 // when app gets a POST request it calls a create function bellow
 // creates a new user with JSON object recieved
 const create = (req, res, next) => {
@@ -22,7 +35,7 @@ const list = (req, res) => {
       return res.status(400).json({ error: errorHandler.getErrorMessage(err) });
     }
     res.status(200).json(users);
-  }).select("name email update created");
+  }).select("username firstname lastname email update created");
 };
 // The userById function uses the value in the :userId param to
 // query the database by _id and load matching user's details
@@ -74,4 +87,7 @@ const remove = (req, res, next) => {
   });
 };
 
-export default { create, list, userById, read, update, remove };
+export default { create, list, userById, read, update, remove, findOneUser };
+
+
+

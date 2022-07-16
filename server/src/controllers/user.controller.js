@@ -3,6 +3,7 @@ import _ from "lodash";
 import errorHandler from "../helpers/dbErrorHandler";
 
 
+
 const findOneUser = (req, res) => {
 
     User.findOne({ 'username': req.body.username }, (err, user) => {
@@ -10,10 +11,11 @@ const findOneUser = (req, res) => {
         return res.status(401).json({ error: "User not found!" });
       }
       res.status(200).json({
-        user: { _id: user._id, name: user.username, email: user.email },
+        user: { _id: user._id, username: user.username, email: user.email },
       });
     });
   };
+
 
 // when app gets a POST request it calls a create function bellow
 // creates a new user with JSON object recieved
@@ -43,7 +45,9 @@ const list = (req, res) => {
 // next relevant controler function
 const userById = (req, res, next, id) => {
   User.findById(id).exec((err, user) => {
+    console.log('Ovo je funkcija UserById', user)
     if (err || !user) {
+        //console.log(user);
       return res.status(404).json({ error: "User not found!" });
     }
     req.profile = user;
@@ -55,8 +59,24 @@ const userById = (req, res, next, id) => {
 const read = (req, res) => {
   req.profile.hashed_password = undefined;
   req.profile.salt = undefined;
-  req.status(200).json(req.profile);
+  res.status(200).json(req.profile);
 };
+
+
+// const read = (req, res) => {
+//     const id = req.params._id;
+
+//     console.log('Ovo je funkcija read', id);
+
+//    User.findById(id).exec((err,user)=>{
+//         if (err){
+//             return res.status(400).json(err.message);
+//         }
+//         //console.log(user);
+//         res.status(200).json(user);
+//     })
+//   };
+
 // updating a single user
 // retrives a single user than uses the lodash method
 // to extend and merge changes that came in request body

@@ -5,7 +5,7 @@ const PermissionSchema = new mongoose.Schema({
       type: String,
       trim: true,
       unique: "Code already exists!",
-      required: "Userame is required",
+      required: "Code is required",
     },
     description: {
         type: String,

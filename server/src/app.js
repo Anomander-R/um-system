@@ -3,6 +3,7 @@ const app = express();
 import compress from "compression";
 import cors from "cors";
 import helmet from "helmet";
+//import template from './template';
 
 /* Configure Express  */
 

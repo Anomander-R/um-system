@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import HeaderBar from './HeaderBar';
 import CommandButton from "./CommandButton";
 import UserInputForm from './UserInputForm';
+import UsersTable from './UsersTable';
 
 let initialState = [{
   "_id": "62d3f7d09171ea337b1a86c2",
@@ -214,8 +215,10 @@ const Main = () => {
               <CommandButton name={"fa fa-trash"} />
               <CommandButton name={"fa fa-edit"} />
             </div> */}
-            
+
         {/* <UserInputForm/> */}
+
+        <UsersTable/>
         </div>
   )
 }

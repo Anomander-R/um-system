@@ -1,18 +1,23 @@
-import './App.css';
-import CommandButton from './components/CommandButton';
+import "./App.css";
+// import { BrowserRouter } from "react-router-dom";
+// import { ThemeProvider } from "./components";
+// import theme from "./theme";
+
+import Main from "./components/Main";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        Test
-        <div style={{display: 'flex'}}>
-        <CommandButton name={"fa fa-plus"}/>
-        <CommandButton name={"fa fa-trash"}/>
-        <CommandButton name={"fa fa-edit"}/>
+    // <BrowserRouter>
+    //   <ThemeProvider theme={theme}>
+        <div className="App">
+          <header className="App-header">
+            Test
+            <Main/>
+
+          </header>
         </div>
-      </header>
-    </div>
+    //   </ThemeProvider>
+    // </BrowserRouter>
   );
 }
 

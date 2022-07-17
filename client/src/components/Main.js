@@ -3,6 +3,7 @@ import HeaderBar from './HeaderBar';
 import CommandButton from "./CommandButton";
 import UserInputForm from './UserInputForm';
 import UsersTable from './UsersTable';
+import { UserManagementContext } from "../context";
 
 let initialState = [{
   "_id": "62d3f7d09171ea337b1a86c2",
@@ -207,6 +208,7 @@ const Main = () => {
 
   
   return (
+    <UserManagementContext.Provider>
     <div>
         <HeaderBar/>
 
@@ -220,6 +222,7 @@ const Main = () => {
 
         <UsersTable/>
         </div>
+        </UserManagementContext.Provider>
   )
 }
 

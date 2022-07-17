@@ -1,9 +1,12 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import HeaderBar from './HeaderBar';
-import CommandButton from "./CommandButton";
+import Modal from "react-modal";
+
 import UserInputForm from './UserInputForm';
 import UsersTable from './UsersTable';
 import { UserManagementContext } from "../context";
+import { create, list, read, update, remove } from './api';
+Modal.setAppElement('#root');
 
 let initialState = [{
   "_id": "62d3f7d09171ea337b1a86c2",
@@ -198,27 +201,63 @@ let initialState = [{
   "created": "2022-07-17T12:17:31.017Z"
   }];
 
+  const styleModal = {
+    overlay: {
+      position: "fixed",
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      backgroundColor: "rgba(245, 222, 179, 0.75)",
+    },
+    content: {
+      position: "absolute",
+      top: "80px",
+      left: "150px",
+      right: "150px",
+      bottom: "80px",
+      border: "1px solid #ccc",
+      background: "#fff",
+      overflow: "auto",
+      WebkitOverflowScrolling: "touch",
+      borderRadius: "4px",
+      outline: "none",
+      padding: "20px",
+    },
+  };
 
 const Main = () => {
 
 
 
-  const [state, setState] = useState(initialState);
+  const [users, setUsers] = useState([]);
+  const [showModal, setShowModal] = useState(false);
 
+  function closeModal() {
+    setShowModal(false);
+  }
+  
 
+    useEffect(() => {
+      list().then((data) => {
+        if (data && data.error) {
+          console.log(data.error);
+        } else {
+          setUsers(data);
+        }
+      });
+    }, []);
   
   return (
-    <UserManagementContext.Provider value={{state, setState}}>
+    <UserManagementContext.Provider value={{users, setUsers, showModal, setShowModal}}>
     <div>
         <HeaderBar/>
 
-        {/* <div style={{ marginTop: "50px", display: "flex" }}>
-              
-              <CommandButton name={"fa fa-trash"} />
-              <CommandButton name={"fa fa-edit"} />
-            </div> */}
-
-        {/* <UserInputForm/> */}
+        
+        <Modal isOpen={showModal} style={styleModal} onRequestClose={closeModal}>
+        <UserInputForm/>
+        </Modal>
+        
 
         <UsersTable/>
         </div>

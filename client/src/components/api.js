@@ -1,5 +1,7 @@
 import baseUrl from "../config";
 
+
+
 const create = user =>{
     return fetch(`${baseUrl}/api/users/`, {
         method: 'POST',

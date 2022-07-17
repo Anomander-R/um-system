@@ -1,8 +1,14 @@
-import React from "react";
+import React, {useContext} from "react";
 import HeaderLogo from "./HeaderLogo";
 import CommandButton from "./CommandButton";
+import { UserManagementContext } from '../context';
 
 const HeaderBar = () => {
+  const {modal, setShowModal} = useContext(UserManagementContext);
+
+  const openAddUser = ()=>{
+    setShowModal(true);
+  }
   return (
     <div
       className="header section-header-offset"
@@ -14,7 +20,7 @@ const HeaderBar = () => {
         <div>User Management System</div>
       </div>
 
-      <div style={{marginRight: '50px', marginLeft: '50px'}}><CommandButton name={"fa fa-plus"} />  Add user</div>
+      <div style={{marginRight: '50px', marginLeft: '50px'}} onClick={openAddUser}> <CommandButton name={"fa fa-plus"}/>  Add user</div>
     </div>
   );
 };

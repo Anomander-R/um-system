@@ -37,7 +37,7 @@ const list = (req, res) => {
       return res.status(400).json({ error: errorHandler.getErrorMessage(err) });
     }
     res.status(200).json(users);
-  }).select("username firstname lastname email update created");
+  }).select("username firstname lastname email status update created");
 };
 // The userById function uses the value in the :userId param to
 // query the database by _id and load matching user's details

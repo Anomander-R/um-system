@@ -200,7 +200,10 @@ const Main = () => {
 
 
 
-  const [state, setState] = useState(initialState)
+  const [state, setState] = useState(initialState);
+
+
+  
   return (
     <div>
         <HeaderBar/>

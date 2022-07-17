@@ -11,7 +11,7 @@ function App() {
     //   <ThemeProvider theme={theme}>
         <div className="App">
           <header className="App-header">
-            Test
+
             <Main/>
 
           </header>

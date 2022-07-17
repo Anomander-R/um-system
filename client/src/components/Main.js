@@ -208,13 +208,14 @@ const Main = () => {
   return (
     <div>
         <HeaderBar/>
-        Main
-        <div style={{ display: "flex" }}>
+
+        {/* <div style={{ marginTop: "50px", display: "flex" }}>
               
               <CommandButton name={"fa fa-trash"} />
               <CommandButton name={"fa fa-edit"} />
-            </div>
-        <UserInputForm/>
+            </div> */}
+            
+        {/* <UserInputForm/> */}
         </div>
   )
 }

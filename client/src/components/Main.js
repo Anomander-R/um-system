@@ -208,7 +208,7 @@ const Main = () => {
 
   
   return (
-    <UserManagementContext.Provider>
+    <UserManagementContext.Provider value={{state, setState}}>
     <div>
         <HeaderBar/>
 
